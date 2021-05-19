@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  mongodb:
+    image: bitnami/mongodb:latest
+    environment:
+      MONGODB_USERNAME: beanie
+      MONGODB_PASSWORD: beanie
+      MONGODB_DATABASE: beanie_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'false'
+      ME_CONFIG_MONGODB_AUTH_DATABASE: beanie_db
+      ME_CONFIG_MONGODB_AUTH_USERNAME: beanie
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: beanie
+    ports:
+      - 8081:8081
+
+volumes:
+  mongodb:
