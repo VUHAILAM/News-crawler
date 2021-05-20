@@ -1,16 +1,9 @@
-from typing import List, Optional
+from typing import Optional, List
 
 from beanie import Document
 
-
-class Category(Document):
-    name: str
-    description: str
-
-
-class Tag(Document):
-    name: str
-    description: str
+from .categories import Category
+from .tags import Tag
 
 
 class Post(Document):
