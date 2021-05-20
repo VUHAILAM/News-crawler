@@ -38,5 +38,12 @@ async def delete_post(post: Post = Depends(get_post)):
 # LISTS
 
 @posts_router.get("/posts", response_model=List[Post])
-async def get_all_posts():
-    return await Post.find_all().to_list()
+async def get_all_posts(limit: int = 10, skip: int = 0, search: str = None):
+    query = {}
+    if search:
+        query.update({
+            "$text": {
+                "$search": search,
+            }
+        })
+    return await Post.find(query).limit(limit).skip(skip).to_list()
