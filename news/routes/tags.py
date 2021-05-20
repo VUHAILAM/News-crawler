@@ -18,14 +18,14 @@ async def get_tag(tag_id: PydanticObjectId) -> Tag:
 # CRUD
 
 
-@tags_router.get("/tags/{tag_id}", response_model=Tag)
-async def get_tag(tag: Tag = Depends(get_tag)):
-    return tag
-
-
 @tags_router.post("/tags", response_model=Tag, status_code=201)
 async def create_tag(tag: Tag):
     await tag.create()
+    return tag
+
+
+@tags_router.get("/tags/{tag_id}", response_model=Tag)
+async def get_tag(tag: Tag = Depends(get_tag)):
     return tag
 
 

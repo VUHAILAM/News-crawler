@@ -18,14 +18,14 @@ async def get_category(category_id: PydanticObjectId) -> Category:
 # CRUD
 
 
-@categories_router.get("/categories/{category_id}", response_model=Category)
-async def get_category(category: Category = Depends(get_category)):
-    return category
-
-
 @categories_router.post("/categories", response_model=Category, status_code=201)
 async def create_category(category: Category):
     await category.create()
+    return category
+
+
+@categories_router.get("/categories/{category_id}", response_model=Category)
+async def get_category(category: Category = Depends(get_category)):
     return category
 
 
