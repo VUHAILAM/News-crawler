@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ef32e5cdc5af2e01432773f5af6393e279f2934ff8d095670a15fcdb2be9f101"
+            "sha256": "890678ad59cd143e64e64e8cb4f04e7412cdee9cd3fa5d0d395b087ada02d7d9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -73,7 +73,7 @@
                 "sha256:1196db507142ef8f00d953efa2f37b39335ef2d72af6ce4fbccfd870b65c5e9f",
                 "sha256:839c11a43897dbec8e5ba0e87a9c9b877239803126877b2efa5cef89aa6b687a"
             ],
-            "markers": "python_full_version >= '3.5.2'",
+            "index": "pypi",
             "version": "==2.4.0"
         },
         "pydantic": {
@@ -101,7 +101,7 @@
                 "sha256:ea5cb40a3b23b3265f6325727ddfc45141b08ed665458be8c6285e7b85bd73a1",
                 "sha256:fec866a0b59f372b7e776f2d7308511784dace622e0992a0b59ea3ccee0ae833"
             ],
-            "markers": "python_full_version >= '3.6.1'",
+            "index": "pypi",
             "version": "==1.8.2"
         },
         "pymongo": {
