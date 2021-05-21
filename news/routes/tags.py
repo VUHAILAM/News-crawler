@@ -1,7 +1,7 @@
 from typing import List
 
 from beanie import PydanticObjectId
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 
 from news.models import Tag
 
@@ -18,7 +18,7 @@ async def get_tag(tag_id: PydanticObjectId) -> Tag:
 # CRUD
 
 
-@tags_router.post("/tags", response_model=Tag, status_code=201)
+@tags_router.post("/tags", response_model=Tag, status_code=status.HTTP_201_CREATED)
 async def create_tag(tag: Tag):
     await tag.create()
     return tag
@@ -29,7 +29,7 @@ async def get_tag(tag: Tag = Depends(get_tag)):
     return tag
 
 
-@tags_router.delete("/tags/{tag_id}", status_code=204)
+@tags_router.delete("/tags/{tag_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_tag(tag: Tag = Depends(get_tag)):
     await tag.delete()
     return tag

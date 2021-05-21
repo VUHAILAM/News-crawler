@@ -2,9 +2,9 @@ from typing import List
 
 from beanie import PydanticObjectId
 from beanie.operators import Text
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 
-from news.models import Category, Post
+from news.models import Post
 
 posts_router = APIRouter()
 
@@ -19,7 +19,7 @@ async def get_post(post_id: PydanticObjectId) -> Post:
 # CRUD
 
 
-@posts_router.post("/posts", response_model=Post, status_code=201)
+@posts_router.post("/posts", response_model=Post, status_code=status.HTTP_201_CREATED)
 async def create_post(post: Post):
     await post.create()
     return post
@@ -30,7 +30,7 @@ async def get_post(post: Post = Depends(get_post)):
     return post
 
 
-@posts_router.delete("/posts/{post_id}", status_code=204)
+@posts_router.delete("/posts/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_post(post: Post = Depends(get_post)):
     await post.delete()
     return post

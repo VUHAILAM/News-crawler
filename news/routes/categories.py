@@ -1,7 +1,7 @@
 from typing import List
 
 from beanie import PydanticObjectId
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, status
 
 from news.models import Category
 
@@ -18,7 +18,7 @@ async def get_category(category_id: PydanticObjectId) -> Category:
 # CRUD
 
 
-@categories_router.post("/categories", response_model=Category, status_code=201)
+@categories_router.post("/categories", response_model=Category, status_code=status.HTTP_201_CREATED)
 async def create_category(category: Category):
     await category.create()
     return category
@@ -29,7 +29,7 @@ async def get_category(category: Category = Depends(get_category)):
     return category
 
 
-@categories_router.delete("/categories/{category_id}", status_code=204)
+@categories_router.delete("/categories/{category_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_category(category: Category = Depends(get_category)):
     await category.delete()
     return category
