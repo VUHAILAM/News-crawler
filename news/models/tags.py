@@ -1,8 +1,14 @@
 from typing import Optional
 
-from beanie import Document
+from pydantic import BaseModel
+
+from .base import RootModel
 
 
-class Tag(Document):
+class TagInput(BaseModel):
     name: str
     description: Optional[str] = ""
+
+
+class Tag(TagInput, RootModel):
+    pass

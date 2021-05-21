@@ -1,9 +1,10 @@
+from datetime import datetime
 from typing import List
 
 from beanie import PydanticObjectId
 from fastapi import APIRouter, HTTPException, Depends, status
 
-from news.models import Category
+from news.models import Category, CategoryInput
 
 categories_router = APIRouter()
 
@@ -19,7 +20,9 @@ async def get_category(category_id: PydanticObjectId) -> Category:
 
 
 @categories_router.post("/categories", response_model=Category, status_code=status.HTTP_201_CREATED)
-async def create_category(category: Category):
+async def create_category(category_input: CategoryInput):
+    category = Category(**category_input.dict())
+    category.created_at = datetime.utcnow()
     await category.create()
     return category
 

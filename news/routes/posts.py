@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 
 from beanie import PydanticObjectId
@@ -5,6 +6,7 @@ from beanie.operators import Text
 from fastapi import APIRouter, HTTPException, Depends, status
 
 from news.models import Post
+from news.models.posts import PostInput
 
 posts_router = APIRouter()
 
@@ -20,7 +22,9 @@ async def get_post(post_id: PydanticObjectId) -> Post:
 
 
 @posts_router.post("/posts", response_model=Post, status_code=status.HTTP_201_CREATED)
-async def create_post(post: Post):
+async def create_post(post_input: PostInput):
+    post = Post(**post_input.dict())
+    post.created_at = datetime.utcnow()
     await post.create()
     return post
 

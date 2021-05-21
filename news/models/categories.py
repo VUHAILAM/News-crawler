@@ -1,8 +1,14 @@
 from typing import Optional
 
-from beanie import Document
+from pydantic import BaseModel
+
+from .base import RootModel
 
 
-class Category(Document):
+class CategoryInput(BaseModel):
     name: str
     description: Optional[str] = ""
+
+
+class Category(CategoryInput, RootModel):
+    pass

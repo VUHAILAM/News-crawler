@@ -2,20 +2,22 @@ from datetime import datetime
 from typing import Optional, List
 
 import pymongo
-from beanie import Document
+from pydantic import BaseModel
+from .base import RootModel
 
 
-class Post(Document):
+class PostInput(BaseModel):
     title: str
     content: str
-    source: Optional[str] = ""
+    source: str = None
     url: str
     categories: Optional[List[str]] = []
     tags: Optional[List[str]] = []
-    raw_html: str
+    raw_html: Optional[str] = None
     published_at: Optional[datetime] = None
-    created_at: Optional[datetime] = None
 
+
+class Post(PostInput, RootModel):
     class Collection:
         indexes = [
             [

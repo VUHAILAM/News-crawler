@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import List
 
 from beanie import PydanticObjectId
@@ -19,7 +20,9 @@ async def get_tag(tag_id: PydanticObjectId) -> Tag:
 
 
 @tags_router.post("/tags", response_model=Tag, status_code=status.HTTP_201_CREATED)
-async def create_tag(tag: Tag):
+async def create_tag(tag_input: Tag):
+    tag = Tag(**tag_input.dict())
+    tag.created_at = datetime.utcnow()
     await tag.create()
     return tag
 

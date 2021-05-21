@@ -1,3 +1,3 @@
-from .categories import Category
-from .posts import Post
-from .tags import Tag
+from .categories import Category, CategoryInput
+from .posts import Post, PostInput
+from .tags import Tag, TagInput
