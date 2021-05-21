@@ -1,14 +1,17 @@
 import os
 
-from motor import motor_asyncio
 from beanie import init_beanie
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from motor import motor_asyncio
 from pydantic import BaseSettings
 
 from news.models import Category, Post, Tag
 from news.routes import categories_router, posts_router, tags_router
 
 app = FastAPI()
+
+app.mount("/admin", StaticFiles(directory="admin/dist", html=True), name="admin")
 
 
 class Settings(BaseSettings):
