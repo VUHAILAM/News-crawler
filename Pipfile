@@ -9,6 +9,7 @@ beanie = "*"
 fastapi = "*"
 motor = "*"
 pydantic = "*"
+python-dotenv = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
