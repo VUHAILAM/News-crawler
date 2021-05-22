@@ -3,4 +3,4 @@
 	url = https://bitbucket.org/vinbdi-slp/news-cms-admin.git
 [submodule "crawler"]
 	path = crawler
-	url = https://bitbucket.org/lamvh2/newspaper_crawler.git
+	url = https://bitbucket.org/vinbdi-slp/newspaper_crawler.git
