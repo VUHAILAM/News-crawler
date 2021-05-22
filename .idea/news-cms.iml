@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/admin" />
+      <excludeFolder url="file://$MODULE_DIR$/crawler" />
     </content>
     <orderEntry type="jdk" jdkName="Pipenv (news-cms)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
