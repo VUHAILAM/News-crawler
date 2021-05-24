@@ -7,8 +7,8 @@ from motor import motor_asyncio
 from pydantic import BaseSettings
 
 from middlewares import apply_cors
-from news.models import Category, Post, Tag
-from news.routes import categories_router, posts_router, tags_router
+from news.models import Category, Post, Tag, Source
+from news.routes import categories_router, posts_router, tags_router, sources_router
 
 app = FastAPI()
 
@@ -31,7 +31,7 @@ async def app_init():
     )
 
     # INIT BEANIE
-    await init_beanie(client.beanie_db, document_models=[Category, Post, Tag])
+    await init_beanie(client.beanie_db, document_models=[Category, Post, Tag, Source])
 
     # ADD ROUTES
     app.include_router(categories_router, prefix="/v1", tags=["categories"])
