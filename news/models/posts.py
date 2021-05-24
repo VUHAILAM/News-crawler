@@ -28,3 +28,8 @@ class Post(PostInput, RootModel):
                 ("tags", pymongo.TEXT),
             ]
         ]
+
+
+class PostListOutput(BaseModel):
+    list: List[Post]
+    count: int
