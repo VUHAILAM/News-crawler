@@ -37,3 +37,4 @@ async def app_init():
     app.include_router(categories_router, prefix="/v1", tags=["categories"])
     app.include_router(posts_router, prefix="/v1", tags=["posts"])
     app.include_router(tags_router, prefix="/v1", tags=["tags"])
+    app.include_router(sources_router, prefix="/v1", tags=["sources"])
