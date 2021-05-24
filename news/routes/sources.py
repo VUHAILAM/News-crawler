@@ -1,8 +1,9 @@
 from typing import List
 
+from beanie import PydanticObjectId
 from fastapi import APIRouter, HTTPException, Depends, status
 
-from news.models.source import Source
+from news.models.sources import Source, SourceInput
 
 sources_router = APIRouter()
 
@@ -15,7 +16,7 @@ async def get_source(source_id: PydanticObjectId) -> Source:
 
 
 @sources_router.post("/sources", response_model=Source, status_code=status.HTTP_201_CREATED)
-async def create_source(source_input: Source):
+async def create_source(source_input: SourceInput):
     source = Source(**source_input.dict())
     await source.create()
     return source
@@ -27,13 +28,14 @@ async def get_source(source: Source = Depends(get_source)):
 
 
 @sources_router.delete("/sources/{source_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_post(source: Source = Depends(get_source)):
+async def delete_source(source: Source = Depends(get_source)):
     await source.delete()
     return source
 
 
 # LISTS
 
+
 @sources_router.get("/sources", response_model=List[Source])
-async def get_all_posts():
+async def get_all_sources():
     return await Source.find_all().to_list()

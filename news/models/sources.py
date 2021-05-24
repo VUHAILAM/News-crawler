@@ -1,6 +1,5 @@
-from beanie import Document
-from typing import Optional, List, Dict
-from pydantic import Json, BaseModel
+from typing import Optional, List
+from pydantic import BaseModel
 from .base import RootModel
 
 
@@ -13,4 +12,3 @@ class SourceInput(BaseModel):
 
 class Source(SourceInput, RootModel):
     pass
-
