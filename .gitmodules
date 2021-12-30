@@ -1,6 +1,6 @@
 [submodule "admin"]
 	path = admin
-	url = https://bitbucket.org/vinbdi-slp/news-cms-admin.git
+	url = https://github.com/VUHAILAM/news-cms-admin.git
 [submodule "crawler"]
 	path = crawler
-	url = https://bitbucket.org/vinbdi-slp/newspaper_crawler.git
+	url = https://github.com/VUHAILAM/newspaper_crawler.git
